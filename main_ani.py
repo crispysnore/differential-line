@@ -1,7 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function
+
 
 from numpy import pi
 from numpy.random import random
@@ -10,7 +10,7 @@ from modules.growth import spawn
 from numpy import zeros
 
 NMAX = 10**6
-SIZE = 2800
+SIZE = 1000
 ONE = 1./SIZE
 
 PROCS = 6
@@ -20,7 +20,7 @@ INIT_NUM = 40
 
 
 STP = ONE*0.4
-NEARL = 3*ONE
+NEARL = 2*ONE
 FARL = 40*ONE
 
 MID = 0.5
@@ -46,8 +46,8 @@ def steps(df):
 
   t1 = time()
   df.optimize_position(STP)
-  spawn_curl(df, NEARL)
-  # spawn(df, NEARL, 0.03)
+  # spawn_curl(df, NEARL)
+  spawn(df, NEARL, 0.001)
 
   if df.safe_vertex_positions(3*STP)<0:
 
@@ -66,7 +66,7 @@ np_verts = zeros(shape=(NMAX,2), dtype='float')
 
 def main():
 
-  from render.render import Animate
+  from iutils.render import Animate
   from differentialLine import DifferentialLine
   from modules.helpers import get_exporter
 
